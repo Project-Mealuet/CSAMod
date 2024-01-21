@@ -22,6 +22,7 @@ jobs:
         run: | 
           cd Krakatau
           cargo build --release
+          cd ..
           chmod +x Krakatau/target/release/krak2
 
       - name: Assembly
