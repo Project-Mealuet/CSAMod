@@ -1,0 +1,35 @@
+name: Assembly
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4.1.1
+
+      - name: Setup Rust
+        uses: ATiltedTree/setup-rust@v1.0.5
+        with:
+          rust-version: stable
+
+      - name: Compile Krakatau
+        run: | 
+          cd Krakatau
+          cargo build --release
+          chmod +x Krakatau/target/release/krak2
+
+      - name: Assembly
+        run: |
+          chmod +x ./run.sh
+          ./run.sh
+
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v4.2.0
+        with:
+          path: dist
