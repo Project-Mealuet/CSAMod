@@ -12,6 +12,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4.1.1
+        with: 
+          submodules: true
 
       - name: Setup Rust
         uses: ATiltedTree/setup-rust@v1.0.5
@@ -20,10 +22,9 @@ jobs:
 
       - name: Compile Krakatau
         run: | 
-          ls Krakatau
-          cd Krakatau/Krakatau
+          cd Krakatau
           cargo build --release
-          cd ../..
+          cd ..
           chmod +x Krakatau/target/release/krak2
 
       - name: Assembly
