@@ -20,9 +20,10 @@ jobs:
 
       - name: Compile Krakatau
         run: | 
-          cd Krakatau
+          ls Krakatau
+          cd Krakatau/Krakatau
           cargo build --release
-          cd ..
+          cd ../..
           chmod +x Krakatau/target/release/krak2
 
       - name: Assembly
